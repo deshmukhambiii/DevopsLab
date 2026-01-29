@@ -1,0 +1,38 @@
+Module 1: Login and Authentication Management
+Overview
+Module 1 handles user authentication and role-based access control for the Smart Apartment Maintenance System. Since the system is designed as an in-memory backend simulation, authentication is implemented using core Java data structures without any database or external identity provider.
+This module ensures that only authorized users can access system features based on their assigned roles (Resident, Maintenance Staff, Admin).
+
+Key Responsibilities
+    • User registration and in-memory credential storage
+    • Secure login validation
+    • Role-based authentication and access control
+    • Session simulation for logged-in users
+    • Logout and session termination
+
+User Roles
+The system supports the following roles:
+    • Resident – Can raise complaints, view complaint status, and receive notifications
+    • Maintenance Staff – Can view assigned complaints and update resolution status
+    • Admin – Can monitor all complaints, manage users, track SLAs, and view analytics
+Each user is associated with exactly one role at the time of registration.
+
+Authentication Flow
+    1. User submits login credentials (username and password)
+    2. System validates credentials against in-memory user store
+    3. If authentication succeeds:
+        ◦ User session is created
+        ◦ Role is loaded into session context
+    4. If authentication fails:
+        ◦ Access is denied
+        ◦ Appropriate error message is returned
+No persistent session storage is used; sessions exist only during runtime.
+
+In-Memory User Store
+    • User data is stored in thread-safe collections (e.g., ConcurrentHashMap)
+    • Passwords are stored in hashed form (basic hashing for simulation purposes)
+    • User objects contain:
+        ◦ User ID
+        ◦ Username
+        ◦ Hashed password
+        ◦ Role
