@@ -1,0 +1,197 @@
+Module 5 — Admin Monitoring & Metrics
+
+(Detailed Explanation — Java In-Memory System)
+
+📌 Purpose
+
+The Admin Monitoring & Metrics module provides analytical insights into the apartment maintenance system.
+It helps administrators monitor system performance, evaluate SLA compliance, detect problem patterns, and make data-driven decisions.
+
+Unlike other modules that perform actions, this module focuses on analyzing system data stored in memory and generating real-time reports and metrics.
+
+🎯 Key Objectives
+
+Monitor overall complaint activity
+
+Measure system efficiency and SLA compliance
+
+Identify recurring maintenance issues
+
+Evaluate staff performance and workload
+
+Support management decisions using analytics
+
+🧠 Core Responsibilities
+1️⃣ Generate Complaint Statistics
+
+This feature calculates high-level complaint trends such as:
+
+Total number of complaints
+
+Complaints grouped by:
+
+Month
+
+Status (Open, In Progress, Resolved, Closed)
+
+Category (Plumbing, Electrical, Security, etc.)
+
+Resident
+
+Example Metrics:
+
+Complaints per month
+
+Open vs Closed complaints
+
+Growth or decline in complaints over time
+
+Java Logic:
+
+Uses Java Streams to filter, group, and count complaint data stored in memory.
+
+2️⃣ Track SLA Compliance Rates
+
+This feature analyzes whether complaints are resolved within SLA deadlines.
+
+SLA Metrics:
+
+Number of complaints resolved on time
+
+Number of SLA breaches
+
+SLA success rate (%)
+
+Average resolution time
+
+Maximum delay recorded
+
+Computation:
+
+Compares:
+
+Complaint creation time
+
+Resolution time
+
+SLA threshold from Module 3
+
+Value:
+
+Helps admins identify:
+
+Performance bottlenecks
+
+Delays in maintenance response
+
+3️⃣ Identify Most Frequent Issue Categories
+
+This function detects common recurring problems.
+
+Example Insights:
+
+Most frequent complaint category (e.g., Plumbing = 40%)
+
+Repeated issues by building or floor
+
+Seasonal trends (e.g., more water complaints in monsoon)
+
+Java Logic:
+
+Group complaints by category
+
+Count occurrences
+
+Sort results in descending frequency
+
+Business Impact:
+
+Helps prioritize preventive maintenance planning.
+
+4️⃣ Produce Snapshot-Based Admin Reports
+
+The module can generate real-time snapshot reports representing the system state at a given moment.
+
+Snapshot Includes:
+
+Total complaints
+
+SLA compliance rate
+
+Active vs resolved complaints
+
+Top 5 issue categories
+
+Staff workload summary
+
+Why Snapshot Reports?
+
+Ensure consistent reporting
+
+Avoid real-time data conflicts
+
+Support audits and performance reviews
+
+5️⃣ Staff Performance Analytics
+
+This feature measures staff efficiency in resolving complaints.
+
+Metrics:
+
+Complaints assigned per staff member
+
+Average resolution time per staff
+
+SLA success rate per staff
+
+Pending workload per staff
+
+Purpose:
+
+Detect overworked staff
+
+Reward high performers
+
+Improve workload distribution
+
+6️⃣ Handle Concurrent Reads Safely
+
+Since multiple modules update data simultaneously:
+
+Metrics module supports thread-safe data reading
+
+Uses:
+
+Immutable snapshots
+
+ReadWriteLock
+
+Concurrent collections
+
+Ensures:
+
+No inconsistent metrics
+
+No system crashes
+
+Accurate reporting under load
+
+7️⃣ Handle Partial Data Corruption & Failures
+
+The system is designed to handle imperfect data gracefully.
+
+Failure Scenarios:
+
+Missing timestamps
+
+Incomplete complaint records
+
+Corrupt entries from other modules
+
+Strategy:
+
+Skip invalid records
+
+Log errors
+
+Continue generating reports without crashing
