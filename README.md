@@ -19,6 +19,18 @@ This system is designed as a **backend simulation of a real-world maintenance wo
 
 ---
 
+## 🏗️ Architecture Overview
+
+The system follows a layered architecture:
+
+- **Model Layer** – Entities such as User, Complaint, SLA, Notification
+- **Service Layer** – Business logic and workflow handling
+- **Repository Layer** – In-memory data storage using collections
+- **Scheduler Component** – SLA monitoring and escalation logic
+- **Notification Engine** – Event-driven simulation module
+
+---
+
 ## 🧪 Testing Strategy
 
 - **Unit tests** using JUnit 5  
